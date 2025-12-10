@@ -1,0 +1,23 @@
+import express, { json } from 'express'
+import cookieParser from 'cookie-parser'
+import { corsMiddleware } from './core/middlewares/cors.js'
+import { errorHandlerMiddleware } from './core/middlewares/errorHandler.js';
+
+import { authRouter } from './modules/auth/auth.routes.js'
+import { facturasRouter } from './modules/facturas/facturas.routes.js'
+
+const app = express()
+app.use(json())
+app.use(cookieParser())
+app.use(corsMiddleware())
+app.disable('x-powered-by')
+
+app.use('/auth', authRouter())
+app.use('/facturas', facturasRouter())
+
+app.use(errorHandlerMiddleware);
+
+app.listen(process.env.PORT, () => {
+  console.log(`server listening on port http://localhost:${process.env.PORT}`)
+})
+

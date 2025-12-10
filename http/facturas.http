@@ -1,0 +1,12 @@
+@baseUrl = http://lnocalhost:3000
+
+### Crear factura
+POST {{baseUrl}}/facturas/crearmn
+Content-Type: application/json
+
+{
+    "usuario":"ulises",
+    "password":"123",
+    "nombre":"omar",
+    "role":"1"
+}
